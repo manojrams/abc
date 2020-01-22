@@ -22,33 +22,20 @@ public class CustomerService {
     // method 1 to add customer
     public Customer addCustomer(Customer customer)
     {
-       /* customer.setCutomerId(customerIdCount);// this we are doing because we are not passing the customerId but we are generating
-        customerList.add(customer);
-        customerIdCount++;
-        return customer;
-        */// here we are not using database so use above code
        return customerDAO.save(customer);
 
-
     }
+
 // method 2 to get list of customers
     public List<Customer> getCustomers(){
         return customerDAO.findAll();
-
-        //return customerList;
     }
 
 //method 3 to get customer by ID
     public Customer getCustomer(int customerId){
-        // here we are using stream api to get the first customer by passing the customerId
-       /* return customerList
-                .stream()
-                .filter(e-> e.getCutomerId() == customerId)
-                .findFirst()
-                .get();*/
        Optional<Customer> optionalCustomer = customerDAO.findById(customerId);
        if(!optionalCustomer.isPresent()){
-           throw new CustomerNotFoundException("customer record is not present......");
+           throw new CustomerNotFoundException("customer record is not present,Please try to add the record......");
        }
        return optionalCustomer.get();
     }
@@ -56,35 +43,12 @@ public class CustomerService {
 
     // method 4 to update the customer by passing cutomerId
     public Customer updateCustomer(int customerId,Customer customer){
-       /* customerList.stream()
-                .forEach(c-> {
-                            if (c.getCutomerId() == customerId){
-                                c.setCustomerFirstName(customer.getCustomerFirstName());
-                                c.setCustomerLastName(customer.getCustomerLastName());
-                                c.setCustomerEmail(customer.getCustomerEmail());
-                            }
-
-                        }
-
-                        );
-        return customerList
-                .stream()
-                .filter(c-> c.getCutomerId() == customerId)
-                .findFirst()
-                .get();*/
        customer.setCutomerId(customerId);
        return customerDAO.save(customer);
     }
 
     // method 5 to delete the customer by passing cutomerId
     public void deleteCustomer(int customerId){
-        /*customerList
-                .stream()
-                .forEach(c-> {
-                    if(c.getCutomerId() == customerId){
-                        customerList.remove(c);
-                    }
-                });*/
          customerDAO.deleteById(customerId);
     }
 
