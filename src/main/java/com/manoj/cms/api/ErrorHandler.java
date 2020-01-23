@@ -1,6 +1,4 @@
 package com.manoj.cms.api;
-
-
 import com.manoj.cms.exception.ApplicationError;
 import com.manoj.cms.exception.CustomerNotFoundException;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,6 +13,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 @RestController
 public class ErrorHandler extends ResponseEntityExceptionHandler {
+    
     @Value("${api_doc_url}")
     public String Details;
     @ExceptionHandler(CustomerNotFoundException.class)
@@ -24,7 +23,6 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
         error.setMessage(exception.getMessage());
         error.setDetails(Details);
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
-
 
     }
 }
