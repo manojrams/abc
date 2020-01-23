@@ -1,11 +1,8 @@
 package com.manoj.cms.api;
-
-
 import com.manoj.cms.model.Customer;
 import com.manoj.cms.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController

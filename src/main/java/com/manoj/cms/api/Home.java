@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 
-@Controller //// This class is to make sure we dont see white error page when we open the URL
+@RestController  //// This class is to make sure we dont see white error page when we open the URL
 public class Home {
     @GetMapping
-    public String Home(){
-        return "index" ;
+    public String HomePage(){
+        return "Welcome to my app" ;
     }
 }
